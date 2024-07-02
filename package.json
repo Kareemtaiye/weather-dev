@@ -2,9 +2,9 @@
   "name": "stage_1",
   "version": "1.0.0",
   "description": "geolocation",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon index.js"
   },
   "author": "kareem_taiye",
   "license": "ISC",
@@ -12,6 +12,10 @@
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "@vercel/postgres": "^0.7.2"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
