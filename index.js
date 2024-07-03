@@ -9,11 +9,11 @@ app.get("/api/hello", async (req, res) => {
   const { visitor_name } = req.query;
   const visitorName = visitor_name || "User";
   const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-  const ip = userIp && "8.8.8.8";
+  // const ip = userIp && "8.8.8.8";
 
   try {
     const ipInfo = await axios.get(
-      `https://ipinfo.io/${ip}?token=${process.env.IP_TOKEN}`
+      `https://ipinfo.io/${userIp}?token=${process.env.IP_TOKEN}`
     );
 
     const weatherInfo = await axios.get(
@@ -40,3 +40,5 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+module.exports = app;

@@ -4,7 +4,7 @@
   "description": "geolocation",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon api/index.js"
   },
   "author": "kareem_taiye",
   "license": "ISC",
