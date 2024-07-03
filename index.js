@@ -16,7 +16,7 @@ app.get("/api/hello", async (req, res) => {
       `https://ipinfo.io/${userIp}?token=${process.env.IP_TOKEN}`
     );
 
-    const location = userIp.data.city;
+    const location = ipInfo.data.city;
 
     if (!location) {
       throw new Error("Location not found for the provided IP address");
@@ -31,7 +31,7 @@ app.get("/api/hello", async (req, res) => {
     res.status(200).json({
       client_ip: userIp,
       location,
-      greeting: `Hello, ${visitorName}, the temperature is ${temp} degress celcius in ${ipInfo.data.city}`,
+      greeting: `Hello, ${visitorName}, the temperature is ${temp} degress celcius in ${location}`,
     });
   } catch (err) {
     console.log("IP ERROR", err);
