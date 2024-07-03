@@ -16,14 +16,22 @@ app.get("/api/hello", async (req, res) => {
       `https://ipinfo.io/${userIp}?token=${process.env.IP_TOKEN}`
     );
 
+    const location = userIp.data.city;
+
+    if (!location) {
+      throw new Error("Location not found for the provided IP address");
+    }
+
     const weatherInfo = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${ipInfo.data.city}&appid=${process.env.WEATHER_API_KEY}&units=metric`
     );
 
+    const temp = weatherInfo.data.main.temp;
+
     res.status(200).json({
-      client_ip: ipInfo.ip,
-      location: ipInfo.city,
-      greeting: `Hello, ${visitorName}, the temperature is ${weatherInfo.data.main.temp} degress celcius in ${ipInfo.data.city}`,
+      client_ip: userIp,
+      location,
+      greeting: `Hello, ${visitorName}, the temperature is ${temp} degress celcius in ${ipInfo.data.city}`,
     });
   } catch (err) {
     console.log("IP ERROR", err);
